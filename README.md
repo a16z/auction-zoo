@@ -8,6 +8,14 @@ And how can on-chain implementations, in turn, inform new directions of theoreti
 
 The auctions are implemented as single-item (ERC721) auctions, with bids denominated in ETH, though we encourage forking to add or change features, e.g. multi-unit auctions, ERC20 bids, different payment rules.
 
+## Contents 
+- Sealed-bid auctions
+  - [Overcollateralized Vickrey auction](./src/sealed-bid/over-collateralized-auction/OverCollateralizedAuction.sol) [[post](https://a16zcrypto.com/how-auction-theory-informs-implementations/)]
+
+## Accompanying blog posts
+1. [On Paper to On-Chain: How Auction Theory Informs Implementations
+](https://a16zcrypto.com/how-auction-theory-informs-implementations/)
+
 ## Usage
 
 Requires [Foundry](https://book.getfoundry.sh/getting-started/installation).
