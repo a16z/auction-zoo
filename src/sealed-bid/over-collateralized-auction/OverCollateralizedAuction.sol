@@ -42,7 +42,19 @@ contract OverCollateralizedAuction is IOverCollateralizedAuctionErrors, Reentran
     }
 
     /// @dev Representation of a bid in storage. Occupies one slot.
-    /// @param commitment The hash commitment of a bid value.
+    /// @param commitment The hash commitment of a bid value. 
+    ///        WARNING: The hash is truncated to 20 bytes (160 bits) to save one 
+    ///        storage slot. This weakens the security, and it is theoretically
+    ///        feasible to generate two bids with different values that hash to
+    ///        the same 20-byte value (h/t kchalkias for flagging this issue:
+    ///        https://github.com/a16z/auction-zoo/issues/2). This would allow a 
+    ///        bidder to effectively withdraw their bid at the last minute, once
+    ///        other bids have been revealed. Currently, the computational cost of
+    ///        such an attack would likely be prohibitvely high –– as of June 2021, 
+    ///        researchers estimated that finding such a collision would cost ~$10B. 
+    ///        If computational costs falls to the extent that this attack is a 
+    ///        concern, it is possible to further mitigate the possibility of such 
+    ///        an attack by using the full 32-byte hash value for the bid commitment. 
     /// @param collateral The amount of collateral backing the bid.
     struct Bid {
         bytes20 commitment;
@@ -174,7 +186,7 @@ contract OverCollateralizedAuction is IOverCollateralizedAuctionErrors, Reentran
     ///        being auctioned.
     /// @param tokenId The ERC721 token ID of the asset being auctioned.
     /// @param commitment The commitment to the bid, computed as
-    ///        `bytes20(keccak256(abi.encode(nonce, bidValue)))`.
+    ///        `bytes20(keccak256(abi.encode(nonce, bidValue, tokenContract, tokenId, auctionIndex)))`.
     function commitBid(
         address tokenContract, 
         uint256 tokenId, 
@@ -237,7 +249,13 @@ contract OverCollateralizedAuction is IOverCollateralizedAuctionErrors, Reentran
         Bid storage bid = bids[tokenContract][tokenId][auctionIndex][msg.sender];
 
         // Check that the opening is valid
-        bytes20 bidHash = bytes20(keccak256(abi.encode(nonce, bidValue)));
+        bytes20 bidHash = bytes20(keccak256(abi.encode(
+            nonce,
+            bidValue,
+            tokenContract,
+            tokenId,
+            auctionIndex
+        )));
         if (bidHash != bid.commitment) {
             revert InvalidOpeningError(bidHash, bid.commitment);
         } else {
