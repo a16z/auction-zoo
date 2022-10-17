@@ -213,7 +213,13 @@ contract OverCollateralizedAuctionTest is IOverCollateralizedAuctionErrors, Test
         bytes32 wrongNonce = bytes32(uint256(nonce) + 1);        
         vm.expectRevert(abi.encodeWithSelector(
             InvalidOpeningError.selector,
-            bytes20(keccak256(abi.encode(wrongNonce, bidValue))),
+            bytes20(keccak256(abi.encode(
+                wrongNonce, 
+                bidValue,
+                address(erc721),
+                TOKEN_ID,
+                1
+            ))),
             commitment
         ));
         hoax(bob);
@@ -242,7 +248,13 @@ contract OverCollateralizedAuctionTest is IOverCollateralizedAuctionErrors, Test
         uint96 wrongValue = bidValue + 1;
         vm.expectRevert(abi.encodeWithSelector(
             InvalidOpeningError.selector,
-            bytes20(keccak256(abi.encode(nonce, wrongValue))),
+            bytes20(keccak256(abi.encode(
+                nonce, 
+                wrongValue,
+                address(erc721),
+                TOKEN_ID,
+                1
+            ))),
             commitment
         ));
         hoax(bob);
@@ -659,7 +671,13 @@ contract OverCollateralizedAuctionTest is IOverCollateralizedAuctionErrors, Test
         private
         returns (bytes20 commitment)
     {
-        commitment = bytes20(keccak256(abi.encode(nonce, bidValue)));
+        commitment = bytes20(keccak256(abi.encode(
+            nonce, 
+            bidValue,
+            address(erc721),
+            tokenId,
+            1 // auction index
+        )));
         hoax(from);
         auction.commitBid{value: collateral}(
             address(erc721),

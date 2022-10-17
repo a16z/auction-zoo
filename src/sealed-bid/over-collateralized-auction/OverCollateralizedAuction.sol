@@ -174,7 +174,7 @@ contract OverCollateralizedAuction is IOverCollateralizedAuctionErrors, Reentran
     ///        being auctioned.
     /// @param tokenId The ERC721 token ID of the asset being auctioned.
     /// @param commitment The commitment to the bid, computed as
-    ///        `bytes20(keccak256(abi.encode(nonce, bidValue)))`.
+    ///        `bytes20(keccak256(abi.encode(nonce, bidValue, tokenContract, tokenId, auctionIndex)))`.
     function commitBid(
         address tokenContract, 
         uint256 tokenId, 
@@ -237,7 +237,13 @@ contract OverCollateralizedAuction is IOverCollateralizedAuctionErrors, Reentran
         Bid storage bid = bids[tokenContract][tokenId][auctionIndex][msg.sender];
 
         // Check that the opening is valid
-        bytes20 bidHash = bytes20(keccak256(abi.encode(nonce, bidValue)));
+        bytes20 bidHash = bytes20(keccak256(abi.encode(
+            nonce,
+            bidValue,
+            tokenContract,
+            tokenId,
+            auctionIndex
+        )));
         if (bidHash != bid.commitment) {
             revert InvalidOpeningError(bidHash, bid.commitment);
         } else {
