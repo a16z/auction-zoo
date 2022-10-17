@@ -42,7 +42,19 @@ contract OverCollateralizedAuction is IOverCollateralizedAuctionErrors, Reentran
     }
 
     /// @dev Representation of a bid in storage. Occupies one slot.
-    /// @param commitment The hash commitment of a bid value.
+    /// @param commitment The hash commitment of a bid value. 
+    ///        WARNING: The hash is truncated to 20 bytes (160 bits) to save one 
+    ///        storage slot. This weakens the security, and it is theoretically
+    ///        feasible to generate two bids with different values that hash to
+    ///        the same 20-byte value (h/t kchalkias for flagging this issue:
+    ///        https://github.com/a16z/auction-zoo/issues/2). This would allow a 
+    ///        bidder to effectively withdraw their bid at the last minute, once
+    ///        other bids have been revealed. Currently, the computational cost of
+    ///        such an attack would likely be prohibitvely high –– as of June 2021, 
+    ///        researchers estimated that finding such a collision would cost ~$10B. 
+    ///        If computational costs falls to the extent that this attack is a 
+    ///        concern, it is possible to further mitigate the possibility of such 
+    ///        an attack by using the full 32-byte hash value for the bid commitment. 
     /// @param collateral The amount of collateral backing the bid.
     struct Bid {
         bytes20 commitment;
