@@ -1,0 +1,15 @@
+{
+  "name": "auction-zoo",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "getProof": "node getBalanceProof.js"
+  },
+  "author": "Michael Zhu <mzhu@a16z.com>",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "@ethereumjs/block": "^4.0.0",
+    "rlp": "^3.0.0",
+    "web3": "^1.8.0"
+  }
+}
