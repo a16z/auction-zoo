@@ -15,6 +15,7 @@ The auctions are implemented as single-item (ERC721) auctions, with bids denomin
 ## Accompanying blog posts
 1. [On Paper to On-Chain: How Auction Theory Informs Implementations
 ](https://a16zcrypto.com/how-auction-theory-informs-implementations/)
+1. [Hidden in Plain Sight: A Sneaky Solidity Implementation of a Sealed-Bid Auction](https://a16zcrypto.com/hidden-in-plain-sight-a-sneaky-solidity-implementation-of-a-sealed-bid-auction/)
 
 ## Usage
 
