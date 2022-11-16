@@ -11,10 +11,12 @@ The auctions are implemented as single-item (ERC721) auctions, with bids denomin
 ## Contents 
 - Sealed-bid auctions
   - [Overcollateralized Vickrey auction](./src/sealed-bid/over-collateralized-auction/OverCollateralizedAuction.sol) [[post](https://a16zcrypto.com/how-auction-theory-informs-implementations/)]
+  - ["Sneaky" Vickrey auction](./src/sealed-bid/over-collateralized-auction/OverCollateralizedAuction.sol) [[post](https://a16zcrypto.com/hidden-in-plain-sight-a-sneaky-solidity-implementation-of-a-sealed-bid-auction/)]
 
 ## Accompanying blog posts
 1. [On Paper to On-Chain: How Auction Theory Informs Implementations
 ](https://a16zcrypto.com/how-auction-theory-informs-implementations/)
+2. [Hidden in Plain Sight: A Sneaky Solidity Implementation of a Sealed-Bid Auction](https://a16zcrypto.com/hidden-in-plain-sight-a-sneaky-solidity-implementation-of-a-sealed-bid-auction/)
 
 ## Usage
 
