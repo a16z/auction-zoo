@@ -1,4 +1,5 @@
 const { BlockHeader } = require('@ethereumjs/block');
+const { Common } = require('@ethereumjs/common');
 const Web3 = require('web3');
 
 
@@ -9,6 +10,7 @@ async function getBalanceProofAsync(web3, address, blockNumber) {
 
 async function getBlockHeaderAsync(web3, blockNumber) {
     const block = await web3.eth.getBlock(blockNumber);
+    const chainId = await web3.eth.getChainId();
     const {
         parentHash,
         sha3Uncles,
@@ -45,8 +47,8 @@ async function getBlockHeaderAsync(web3, blockNumber) {
             mixHash,
             nonce,
             baseFeePerGas,
-        }, 
-        { hardforkByBlockNumber: true }
+        },
+        { common: new Common({ chain: chainId }), hardforkByBlockNumber: true }
     );
     const serialized = header.serialize().toString('hex');
     console.log({ blockHeaderRLP: serialized, blockNumber: block.number, blockHash: block.hash });
