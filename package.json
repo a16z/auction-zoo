@@ -8,8 +8,9 @@
   "author": "Michael Zhu <mzhu@a16z.com>",
   "license": "AGPL-3.0",
   "dependencies": {
-    "@ethereumjs/block": "^4.0.0",
+    "@ethereumjs/block": "^4.1.0",
+    "@ethereumjs/common": "^3.0.2",
     "rlp": "^3.0.0",
-    "web3": "^1.8.0"
+    "web3": "^1.8.1"
   }
 }
