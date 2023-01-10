@@ -175,7 +175,7 @@ library LibBalanceProof {
     /// @param nodeRLP The RLP-encoded trie node.
     /// @param path The lookup path for the proof.
     /// @param pathBitIndex The number of bits of the lookup path that 
-    ///        have already been preocessed.
+    ///        have already been processed.
     /// @return isBranchNode Whether or not the given node was in fact 
     ///         a branch node.
     /// @return childHash If the given node was a branch node, the 
@@ -228,7 +228,7 @@ library LibBalanceProof {
                 itemLength = 33;
                 assembly {
                     // If we're at the index corresponding to the current nibble
-                    // and the item is plausibly a bytes32, pre-emptively cache 
+                    // and the item is plausibly a bytes32, preemptively cache 
                     // the value of the item in case it is in fact the hash of the
                     // next node.
                     if eq(i, nibble) {
@@ -256,13 +256,13 @@ library LibBalanceProof {
         }
     }
 
-    /// @dev Proccesses an RLP-encoded Merkle Patricia Trie node as a leaf node.
+    /// @dev Processes an RLP-encoded Merkle Patricia Trie node as a leaf node.
     ///      Returns the queried account balance from the node. Reverts if it is
     ///      not a properly encoded leaf node.
     /// @param nodeRLP The RLP-encoded trie node.
     /// @param path The lookup path for the proof.
     /// @param pathBitIndex The number of bits of the lookup path that have 
-    ///        already been preocessed.
+    ///        already been processed.
     /// @return accountBalance The proven past balance of the account.
     function _processLeafNode(
         bytes memory nodeRLP,
@@ -446,7 +446,7 @@ library LibBalanceProof {
         }
         currPtr += 33;
 
-        // currPtr > acountStatePtr, so this cannot underflow.
+        // currPtr > accountStatePtr, so this cannot underflow.
         unchecked {
             // Account state array should have 4 elements
             if ((currPtr - accountStatePtr) != accountStateLen) {
@@ -455,12 +455,12 @@ library LibBalanceProof {
         }
     }
 
-    /// @dev Proccesses an RLP-encoded Merkle Patricia Trie node as an extension
+    /// @dev Processes an RLP-encoded Merkle Patricia Trie node as an extension
     ///      node. Reverts if it is not a properly encoded extension node.
     /// @param nodeRLP The RLP-encoded trie node.
     /// @param path The lookup path for the proof.
     /// @param pathBitIndex The number of bits of the lookup path that have 
-    ///        already been preocessed.
+    ///        already been processed.
     /// @return partialPathLength The length of the partial path that the node
     ///         "skips ahead" by.
     /// @return childHash The expected hash of the next node in the path.
@@ -586,7 +586,7 @@ library LibBalanceProof {
     /// @param encodedPathLen Length in bytes of the encoded path.
     /// @param path The lookup path for the proof.
     /// @param pathBitIndex The number of bits of the lookup path that have 
-    ///        already been preocessed.
+    ///        already been processed.
     /// @return flag The one-nibble flag prefixing the encoded partial path
     ///         indicating whether the node is an extension or leaf node, and 
     ///         whether the partial path is odd or even in length.
