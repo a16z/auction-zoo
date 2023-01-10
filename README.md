@@ -1,10 +1,10 @@
 # The Auction Zoo
 
-Whereas auction formats were once loosely adopted for (and constrained by) the technical limits of blockchains, we’re now starting to see more novel designs adapted especially for blockchains. 
+Whereas auction formats were once loosely adopted for (and constrained by) the technical limits of blockchains, we’re now starting to see more novel designs adapted especially for blockchains.
 This repository aims to help bridge the gap between auction theory and practice by showcasing Solidity auction implementations that demonstrate interesting theoretical properties or novel constructions.
 
-How can theoretical principles inform implementation decisions? 
-And how can on-chain implementations, in turn, inform new directions of theoretical research? Though theory can guide us toward a certain auction design, a seemingly innocuous implementation detail itself may be interesting to analyze with a theoretical lens. 
+How can theoretical principles inform implementation decisions?
+And how can on-chain implementations, in turn, inform new directions of theoretical research? Though theory can guide us toward a certain auction design, a seemingly innocuous implementation detail itself may be interesting to analyze with a theoretical lens.
 
 The auctions are implemented as single-item (ERC721) auctions, with bids denominated in ETH, though we encourage forking to add or change features, e.g. multi-unit auctions, ERC20 bids, different payment rules.
 

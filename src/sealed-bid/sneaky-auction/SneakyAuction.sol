@@ -518,7 +518,7 @@ contract SneakyAuction is ISneakyAuctionErrors, ReentrancyGuard {
     /// @dev Gets the balance of the given account at a past block by 
     ///      traversing the given Merkle proof for the state trie. Wraps
     ///      LibBalanceProof.getProvenAccountBalance so that this function
-    ///      can be overriden for testing.
+    ///      can be overridden for testing.
     /// @param proof A Merkle proof for the given account's balance in
     ///        the state trie of a past block.
     /// @param blockHeaderRLP The RLP-encoded block header for the past 
