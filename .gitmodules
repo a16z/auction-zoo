@@ -4,3 +4,10 @@
 [submodule "lib/solmate"]
 	path = lib/solmate
 	url = https://github.com/transmissions11/solmate
+[submodule "lib/aztec-connect-bridges"]
+	path = lib/aztec-connect-bridges
+	url = https://github.com/AztecProtocol/aztec-connect-bridges
+	branch = v0.1.74
+[submodule "lib/rollup-encoder"]
+	path = lib/rollup-encoder
+	url = https://github.com/AztecProtocol/rollup-encoder
