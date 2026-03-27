@@ -12,5 +12,10 @@
     "@ethereumjs/common": "^3.0.2",
     "rlp": "^3.0.0",
     "web3": "^1.8.1"
+  },
+  "overrides": {
+    "form-data@2": ">=2.5.4",
+    "form-data@3": ">=3.0.4",
+    "form-data@4": ">=4.0.4"
   }
 }
